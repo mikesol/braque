@@ -2,6 +2,8 @@
 
 Braque is a compile-time model creation framework for Java.
 
+#### tl;dr here's an [Android sample project][4]
+
 Braque aims to solve the following problems:
 
 1. It lessens the need for the
@@ -154,3 +156,4 @@ representing the same object from various different angles within one work.
 [1]: https://en.wikipedia.org/wiki/Denormalization
 [2]: http://clojure.org
 [3]: http://google.github.io/dagger/
+[4]: https://github.com/mikesol/favorite-things
