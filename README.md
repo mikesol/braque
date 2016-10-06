@@ -4,6 +4,8 @@ Braque is a compile-time model creation framework for Java.
 
 #### tl;dr here's an [Android sample project][4]
 
+![Logo](img/logo.png)
+
 Braque aims to solve the following problems:
 
 1. It lessens the need for the
