@@ -1,0 +1,65 @@
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.8"
+    }
+}
+
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: "net.ltgt.apt"
+apply plugin: 'idea'
+
+ext {
+    junit_version = "4.12"
+}
+
+sourceSets {
+    // Note that just declaring this sourceset creates two configurations.
+    koans {
+        java {
+            compileClasspath += main.output
+            runtimeClasspath += main.output
+        }
+    }
+}
+
+configurations {
+    koansCompile.extendsFrom testCompile
+    koansRuntime.extendsFrom testRuntime
+}
+
+task koans(type:Test){
+    description = "Run integration tests (located in src/koans/...)."
+    testClassesDir = project.sourceSets.koans.output.classesDir
+    classpath = project.sourceSets.koans.runtimeClasspath
+}
+
+koans {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
+compileJava {
+    aptOptions.processorArgs = [makeObjectFieldsPublic: false]
+}
+
+dependencies {
+    koansCompile "junit:junit:$junit_version"
+    testCompile "junit:junit:$junit_version"
+    compile project(':braque-core')
+    apt project(':braque-compiler')
+}

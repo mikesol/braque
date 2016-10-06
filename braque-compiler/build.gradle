@@ -1,0 +1,65 @@
+Properties bintrayProperties = new Properties()
+bintrayProperties.load(project.file('local.properties').newDataInputStream())
+
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+}
+
+publishing {
+    publications {
+        BraquePublication(MavenPublication) {
+            from components.java
+            groupId 'com.jongla'
+            artifactId 'braque-compiler'
+            version '0.0.1-SNAPSHOT'
+        }
+    }
+}
+
+bintray {
+    user = bintrayProperties.getProperty("bintray.user")
+    key = bintrayProperties.getProperty("bintray.apikey")
+    publications = ['BraquePublication']
+    pkg {
+        repo = 'java-utils'
+        name = 'braque-compiler'
+        userOrg = 'jongla-bin'
+        licenses = ['Apache-2.0']
+        version {
+            name = '0.0.0'
+            released  = new Date()
+        }
+    }
+}
+
+
+dependencies {
+    compile group: 'com.google.auto', name: 'auto-common', version: '0.7'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+    compile project(':braque-core')
+    compile group: 'org.clojure', name: 'clojure', version: '1.6.0'
+}
+
