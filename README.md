@@ -23,6 +23,40 @@ above).
 5. We need to be able to automatically update groups of objects with new annotations,
 methods, etc..
 
+## Where can I get it?
+
+In your top-level `build.gradle`:
+```groovy
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.0' // for android
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8' // for android
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.8" // for java
+    }
+}
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "https://jongla-bin.bintray.com/java-utils"
+        }
+    }
+}
+```
+
+And then in the `build.gradle` for the projects where braque is used:
+```groovy
+dependencies {
+    compile 'com.jongla:braque-core:0.0.1'
+    apt 'com.jongla:braque-compiler:0.0.1'
+}
+```
+
 ## How does it work?
 
 The easiest way to learn about Braque is to run `./gradlew koans`, which
