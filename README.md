@@ -171,7 +171,7 @@ denormalization and [clojure][2] integration for code injection via the
 
 ## A note about IDEs
 
-AndroidStudio is great at handling generated code via the android-apt class.
+AndroidStudio is great at handling generated code via the `android-apt` plugin.
 IntelliJ is less friendly.  There are a few apt options of which
 `simple-braque-example` uses one.  But even this takes Project Structure
 tweaking in IntelliJ to get it to recognize the correct source folders.
@@ -189,7 +189,16 @@ to see how this is done in apt (for now it is set to false).
 Georges Braque (1882-1963), a French painter, was a master at convincingly
 representing the same object from various different angles within one work.
 
+## Miscellania
+
+Braque was written by [Mike Solomon][5] at [Jongla][6].  The Braque Logo was
+created by [Tomi Tuomela][7]. Braque is Open Source under the Apache License
+Version 2.0. Pull requests are welcome!
+
 [1]: https://en.wikipedia.org/wiki/Denormalization
 [2]: http://clojure.org
 [3]: http://google.github.io/dagger/
 [4]: https://github.com/mikesol/favorite-things
+[5]: mailto:mike@jongla.com
+[6]: http://www.jongla.com
+[7]: mailto:tomi@jongla.com
