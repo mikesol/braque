@@ -191,9 +191,9 @@ representing the same object from various different angles within one work.
 
 ## Miscellania
 
-Braque was written by [Mike Solomon][5] at [Jongla][6].  The Braque Logo was
-created by [Tomi Tuomela][7]. Braque is Open Source under the Apache License
-Version 2.0. Pull requests are welcome!
+The first version of Braque was written by [Mike Solomon][5] at [Jongla][6].
+The Braque Logo was created by [Tomi Tuomela][7]. Braque is Open Source under
+the Apache License Version 2.0. Pull requests are welcome!
 
 [1]: https://en.wikipedia.org/wiki/Denormalization
 [2]: http://clojure.org
