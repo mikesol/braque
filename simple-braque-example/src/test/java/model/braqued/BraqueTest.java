@@ -87,7 +87,7 @@ public class BraqueTest {
         objectMap.put(bogus, 5.11);
 
         Set<String> leftover = new HashSet<>();
-        List<BaseballPlayerInfoShowBaseballPlayer> players = Deserializer.deserialize(objectMap, BaseballPlayerInfoShowBaseballPlayer.class, leftover);
+        List<BaseballPlayerInfoShowBaseballPlayer> players = Deserializer._deserialize(objectMap, BaseballPlayerInfoShowBaseballPlayer.class, leftover);
 
         Assert.assertTrue("two players are returned", players.size() == 2);
         Assert.assertTrue("player 1 id is id0", players.get(0).getId().equals("id0"));
@@ -95,7 +95,7 @@ public class BraqueTest {
         Assert.assertTrue("player 2 has 401 hits", players.get(1) instanceof Hits && ((HitsGet)players.get(1)).getHits().equals(401));
         Assert.assertTrue("one bogus piece of data is left over", leftover.size() == 1 && new ArrayList<>(leftover).get(0).equals(bogus));
 
-        Map<String, Object> serialized = Serializer.serialize(players.get(0));
+        Map<String, Object> serialized = Serializer._serialize(players.get(0));
         Assert.assertTrue("serialized id is correct", serialized.get("baseballplayerinfo/id0/id").equals("id0"));
         Assert.assertTrue("serialized at bats is correct", serialized.get("baseballplayerinfo/id0/atbats").equals(100));
         Assert.assertTrue("serialized numbers worn is correct", serialized.get("baseballplayerinfo/id0/numbersworn/0").equals(5));
@@ -120,14 +120,14 @@ public class BraqueTest {
         String bogus = "teaminfo/id7/player0";
         objectMap.put(bogus, 5.11);
 
-        List<TeamInfoShowTeam> teams = Deserializer.deserialize(objectMap, TeamInfoShowTeam.class);
+        List<TeamInfoShowTeam> teams = Deserializer._deserialize(objectMap, TeamInfoShowTeam.class);
         Assert.assertTrue("one team is returned", teams.size() == 1);
         Assert.assertTrue("team 1 id is id0", teams.get(0).getId().equals("id0"));
         Assert.assertTrue("team 1's city is Kansas City", teams.get(0) instanceof CityGet && ((CityGet)teams.get(0)).getCity().equals("Kansas City"));
         Assert.assertTrue("the team has two players", teams.get(0) instanceof PlayersGet && ((PlayersGet)teams.get(0)).getPlayers().size() == 2);
 
 
-        Map<String, Object> serialized = Serializer.serialize(teams.get(0));
+        Map<String, Object> serialized = Serializer._serialize(teams.get(0));
         Assert.assertTrue("serialized id is correct", serialized.get("teaminfo/id0/id").equals("id0"));
         Assert.assertTrue("serialized name is correct", serialized.get("teaminfo/id0/name").equals("Royals"));
         Assert.assertTrue("serialized player 1's name is correct", serialized.get("teaminfo/id0/players/player0/name").equals("Bob"));

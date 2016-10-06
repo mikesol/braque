@@ -152,8 +152,8 @@ public class BraqueAnnotationProcessor extends BasicAnnotationProcessor {
                 CodeBuilder deserializer = new CodeBuilder();
                 CodeBuilder transformer = new CodeBuilder();
                 String newPkg = Utils.STATIC_METHOD_CLASSES_PACKAGE;
-                serializer.pkg(newPkg).pubic().klass().as("Serializer").beg();
-                deserializer.pkg(newPkg).pubic().klass().as("Deserializer").beg();
+                serializer.pkg(newPkg).pubic().klass().as("Serializer").impl().processing().a("Serializer").sbeg();
+                deserializer.pkg(newPkg).pubic().klass().as("Deserializer").impl().processing().a("Deserializer").sbeg();
                 transformer.pkg(newPkg).pubic().klass().as("Transformer").beg();
                 GenerateHelperMethods.makeHelperMethods(processingEnv);
                 Map<String, TypeTree> typeTreeMap = Utils.buildTypeTree(typedElements);

@@ -52,7 +52,7 @@ public class Koans {
         test1Map.put("baseballplayerinfo/myId/_type", "bogusType");
         test1Map.put("baseballplayerinfo/myId/id", "myId");
         test1Map.put("baseballplayerinfo/myId/gamesplayed", 100);
-        List<BaseballPlayerInfoShowBaseballPlayer> test1Players = Deserializer.deserialize(test1Map, BaseballPlayerInfoShowBaseballPlayer.class);
+        List<BaseballPlayerInfoShowBaseballPlayer> test1Players = Deserializer._deserialize(test1Map, BaseballPlayerInfoShowBaseballPlayer.class);
 
         Assert.assertTrue("The deserializer deserializes serialized data, represented as a collection of values at "+
                 "api endpoints, into strongly typed objects.  If you give it a valid type for the _type endpoint, "+
@@ -66,7 +66,7 @@ public class Koans {
         test2Map.put("players/foo/position", "Wide Receiver");
         test2Map.put("players/bar/_type", "FootballPlayer");
         test2Map.put("players/bar/position", "Runningback");
-        List<PlayersShowPlayer> test2Players = Deserializer.deserialize(test2Map, PlayersShowPlayer.class);
+        List<PlayersShowPlayer> test2Players = Deserializer._deserialize(test2Map, PlayersShowPlayer.class);
 
 
         Assert.assertTrue("The @Type annotation takes an optional first element as a supertype followed by a list of " +
@@ -75,7 +75,7 @@ public class Koans {
                 "is a type which inherits from Player which has one necessary property, the Id. Look at how the player "+
                 "with id=foo is created and see if you can do the same thing to create the player with id=bar.", test2Players.size() == 2);
 
-        Map<String, Object> serialized = Serializer.serialize(test1Players.get(0));
+        Map<String, Object> serialized = Serializer._serialize(test1Players.get(0));
         Assert.assertTrue("The Serializer works in the opposite direction. Here, we serialize the first deserialized "+
                 "player.  Their gamesplayed should be the same as what we put in.",
                 serialized.get("baseballplayerinfo/myId/gamesplayed").equals(403));
@@ -84,7 +84,7 @@ public class Koans {
         test3Map.put("players/helsinki/_type", "Player");
         test3Map.put("players/helsinki/id", "helsinki");
         test3Map.put("players/helsinki/position", "Pitcher");
-        List<PlayersShowPlayer> test3Players = Deserializer.deserialize(test3Map, PlayersShowPlayer.class);
+        List<PlayersShowPlayer> test3Players = Deserializer._deserialize(test3Map, PlayersShowPlayer.class);
 
         Assert.assertTrue("Class hierarchies are enforced by braque, and all classes that are not at the bottom "+
                 "of a hierarchy are abstract.  Make the Player above one of its two subclasses.",
@@ -101,7 +101,7 @@ public class Koans {
         test4Map.put("baseballplayerinfo/myId/numbersworn/2", 101);
         test4Map.put("baseballplayerinfo/myId/runs", 3.1416);
 
-        List<BaseballPlayerInfoShowBaseballPlayer> test4Players = Deserializer.deserialize(test4Map, BaseballPlayerInfoShowBaseballPlayer.class);
+        List<BaseballPlayerInfoShowBaseballPlayer> test4Players = Deserializer._deserialize(test4Map, BaseballPlayerInfoShowBaseballPlayer.class);
 
         Assert.assertTrue("Type correctness is enforced in the deserializer. "+
                 "Check the type of simple-example/src/main/java/model/player/baseball/Runs.java.", test4Players.get(0) instanceof Runs);
@@ -112,7 +112,7 @@ public class Koans {
         test5Map.put("baseballplayerinfo/myId/gamesplayed", 100);
         test5Map.put("baseballplayerinfo/myId/hits", 200);
 
-        List<BaseballPlayerInfoShowBaseballPlayer> test5Players = Deserializer.deserialize(test5Map, BaseballPlayerInfoShowBaseballPlayer.class);
+        List<BaseballPlayerInfoShowBaseballPlayer> test5Players = Deserializer._deserialize(test5Map, BaseballPlayerInfoShowBaseballPlayer.class);
 
         Assert.assertTrue("Braque is all about strong types.  Objects are instances of all their properties.  Because this player "+
                 "has no average, it is not an instance of Average.  Fix that by giving the player an average (\"baseballplayerinfo/myId/average\"). "+
@@ -147,7 +147,7 @@ public class Koans {
                 "we are manually managing views or denormalizing data."+
                         "Look to see how many times a player's Name is represented in the API. "+
                 "Of course, you could just cheat and read Fanner.java, but it's more fun if you look for Name in the API.",
-                Fanner.mPropertiesToPaths.get(model.player.braqued.Name.class).size() == 3);
+                Fanner._propertyToPaths().get(model.player.braqued.Name.class).size() == 3);
 
         Assert.assertTrue("@Clojure allows us to inject code into our objects using Clojure code. "+
                 "Find the use of @Clojure in the code base (hint - it's on a property in model.player.baseball) "+

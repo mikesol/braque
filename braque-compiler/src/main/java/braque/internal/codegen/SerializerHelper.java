@@ -25,8 +25,13 @@ class SerializerHelper {
 
     static void addStaticFooterFunctions(CodeBuilder builder, SetMultimap<Class<? extends Annotation>, Element> elementsByAnnotation) {
 
-        builder.sp().statik().pubic().as(new CB().G().as("T").ext().processing().a("RESTEndpoint").g().toS())
+        builder.sp().override().sp().pubic().as(new CB().G().as("T").ext().processing().a("RESTEndpoint").g().toS())
                 .sojmap().a(SERIALIZE)
+                .P().phinal().as("T").a(DESERIALIZED).psbeg()
+                .spret()._a(SERIALIZE).Pp(DESERIALIZED).cn()
+                .spend()
+                .sp().statik().pubic().as(new CB().G().as("T").ext().processing().a("RESTEndpoint").g().toS())
+                .sojmap()._a(SERIALIZE)
                 .P().phinal().as("T").a(DESERIALIZED).psbeg();
         int i = 0;
         for (Map.Entry<Class<? extends Annotation>, Element> entry : elementsByAnnotation.entries()) {
