@@ -22,16 +22,16 @@ import static braque.internal.codegen.Utils.getAnnotationMirrorValueAsTypeElemen
 class DeserializerHelper {
 
     static void addStaticFooterFunctions(CodeBuilder builder, SetMultimap<Class<? extends Annotation>, Element> elementsByAnnotation) {
-        builder.a("    public <T extends ").processing().a("RESTOperation> java.util.List<T> deserialize(java.util.Map<String, Object> serialized, Class<T> type) {").n()
+        builder.a("    public <T extends ").processing().a("RESTEndpoint> java.util.List<T> deserialize(java.util.Map<String, Object> serialized, Class<T> type) {").n()
                 .a("      return _deserialize(serialized, type);").n()
                 .a("   }").n().n()
-                .a("    public <T extends ").processing().a("RESTOperation> java.util.List<T> deserialize(java.util.Map<String, Object> serialized, Class<T> type, java.util.Collection<String> remainingPaths) {").n()
+                .a("    public <T extends ").processing().a("RESTEndpoint> java.util.List<T> deserialize(java.util.Map<String, Object> serialized, Class<T> type, java.util.Collection<String> remainingPaths) {").n()
                 .a("      return _deserialize(serialized, type, remainingPaths);").n()
                 .a("   }").n().n()
-                .a("    static public <T extends ").processing().a("RESTOperation> java.util.List<T> _deserialize(java.util.Map<String, Object> serialized, Class<T> type) {").n()
+                .a("    static public <T extends ").processing().a("RESTEndpoint> java.util.List<T> _deserialize(java.util.Map<String, Object> serialized, Class<T> type) {").n()
                 .a("      return _deserialize(serialized, type, new java.util.ArrayList<String>());").n()
                 .a("   }").n().n()
-                .a("    static public <T extends ").processing().a("RESTOperation> java.util.List<T> _deserialize(java.util.Map<String, Object> serialized, Class<T> type, java.util.Collection<String> remainingPaths) {").n()
+                .a("    static public <T extends ").processing().a("RESTEndpoint> java.util.List<T> _deserialize(java.util.Map<String, Object> serialized, Class<T> type, java.util.Collection<String> remainingPaths) {").n()
                 .a("        if (serialized.size() == 0) {").n()
                 .a("            return new java.util.ArrayList<>();").n()
                 .a("        }").n().n()
