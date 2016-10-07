@@ -90,12 +90,13 @@ public class BraqueTest {
         List<BaseballPlayerInfoShowBaseballPlayer> players = Deserializer._deserialize(objectMap, BaseballPlayerInfoShowBaseballPlayer.class, leftover);
 
         Assert.assertTrue("two players are returned", players.size() == 2);
-        Assert.assertTrue("player 1 id is id0", players.get(0).getId().equals("id0"));
-        Assert.assertTrue("player 1 has 100 atbats", players.get(0) instanceof AtBats && ((AtBatsGet)players.get(0)).getAtBats().equals(100));
-        Assert.assertTrue("player 2 has 401 hits", players.get(1) instanceof Hits && ((HitsGet)players.get(1)).getHits().equals(401));
+        BaseballPlayerInfoShowBaseballPlayer player1 = players.get(0).getId().equals("id0") ? players.get(0) : players.get(1);
+        BaseballPlayerInfoShowBaseballPlayer player2 = players.get(0).getId().equals("id0") ? players.get(1) : players.get(0);
+        Assert.assertTrue("player 1 has 100 atbats", player1 instanceof AtBats && ((AtBatsGet)player1).getAtBats().equals(100));
+        Assert.assertTrue("player 2 has 401 hits", player2 instanceof Hits && ((HitsGet)player2).getHits().equals(401));
         Assert.assertTrue("one bogus piece of data is left over", leftover.size() == 1 && new ArrayList<>(leftover).get(0).equals(bogus));
 
-        Map<String, Object> serialized = Serializer._serialize(players.get(0));
+        Map<String, Object> serialized = Serializer._serialize(player1);
         Assert.assertTrue("serialized id is correct", serialized.get("baseballplayerinfo/id0/id").equals("id0"));
         Assert.assertTrue("serialized at bats is correct", serialized.get("baseballplayerinfo/id0/atbats").equals(100));
         Assert.assertTrue("serialized numbers worn is correct", serialized.get("baseballplayerinfo/id0/numbersworn/0").equals(5));
