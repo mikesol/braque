@@ -48,7 +48,7 @@ no reference (don't inherit from, don't store, etc...) the original interfaces.
 
 ### The Serializer
 
-```
+```java
 public interface Serializer {
     <T extends braque.RESTEndpoint> java.util.Map<String, Object> serialize(final T deserialized);
 }
