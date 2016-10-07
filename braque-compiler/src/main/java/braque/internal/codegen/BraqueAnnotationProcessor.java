@@ -43,7 +43,7 @@ import javax.tools.Diagnostic;
         Utils.BRAQUE + Utils.DOT + "Update",
         Utils.BRAQUE + Utils.DOT + "Destroy",
         Utils.BRAQUE + Utils.DOT + "Clojure"})
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
+@SupportedSourceVersion(SourceVersion.RELEASE_7)
 @SupportedOptions({"makeObjectFieldsPublic",
         "braqueGeneratedObjectsPackageName",
         "braqueStaticMethodClassesFullyQualifiedPackageName"})
