@@ -63,3 +63,10 @@ dependencies {
     compile project(':braque-core')
     apt project(':braque-compiler')
 }
+
+test {
+    testLogging {
+        events "failed"
+        exceptionFormat "short"
+    }
+}
