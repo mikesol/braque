@@ -29,7 +29,8 @@ sample projects).  An API that contains:
   argument=Id.class,
   properties = {Name.class}
 )
-public interface BrowseUsers
+public interface BrowseUsers {
+}
 ```
 
 will result in the creation of an interface called `BrowseUsersShowUser.java` in
@@ -75,7 +76,6 @@ Show(
         }
 )
 interface MyEndpoint {
-
 }
 ```
 
@@ -107,7 +107,7 @@ about misplaced `$.class`.
 
 ### The Deserializer
 
-```
+```java
 public interface Deserializer {
     <T extends braque.RESTEndpoint> java.util.List<T> deserialize(java.util.Map<String, Object> serialized, Class<T> type);
     <T extends braque.RESTEndpoint> java.util.List<T> deserialize(java.util.Map<String, Object> serialized, Class<T> type, java.util.Collection<String> remainingPaths);
@@ -138,7 +138,7 @@ Some pseudocode:
 
 ```java
 Transformer.makeBrowseUpdateUser("uid").addName("Pekka").addAge(52).commit();
-...
+// ...
 Transformer.take(previousResult).removeAge().addHometown("Helsinki").commit();
 ```
 
