@@ -1,6 +1,7 @@
 Properties bintrayProperties = new Properties()
-bintrayProperties.load(project.file('local.properties').newDataInputStream())
-
+if (file('local.properties').exists()) {
+    bintrayProperties.load(project.file('local.properties').newDataInputStream())
+}
 buildscript {
     repositories {
         jcenter()
