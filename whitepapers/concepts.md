@@ -98,6 +98,13 @@ myendpoint/uid0/members/uid3/name Bob
 myendpoint/uid0/members/uid3/age 44
 ```
 
+The `$.class` acts as a delimiter for nested interfaces so that we know when they
+end.  For example, the first `$.class` above signals that the first `user.Name.class`
+belongs to the `Boss.class` but afterwards `Members.class` belongs to the
+top-level object.  The Braque compiler will generally complain politely
+about misplaced `$.class`.
+
+
 ### The Deserializer
 
 ```

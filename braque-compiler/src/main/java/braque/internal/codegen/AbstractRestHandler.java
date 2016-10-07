@@ -1354,6 +1354,20 @@ abstract class AbstractRestHandler {
                 " all levels must be closed with a $.class.  Think of $.class like closing curly brackets.");
     }
 
+    // TODO: move this to a dedicated validator
+    private void validateThatCurrentPropertyIsAProperty(TypeElement restElement, TypeElement currentProperty,
+                                                                       ProcessingEnvironment processingEnvironment) {
+
+            for (AnnotationMirror annotationMirror : currentProperty.getAnnotationMirrors()) {
+                if (isProperty(annotationMirror) || isPropertySet(annotationMirror) || isPropertyList(annotationMirror)) {
+                    return;
+                }
+            }
+        processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, "The property "+currentProperty+
+        " in rest type "+restElement+" is not annotated with a property annotation.  It needs to be annotated with"+
+        " @Property, @PropertySet or @PropertyList.");
+    }
+
     private void addToPropertyToInfoMap(PropertyToInfoMap propertyToInfoMap, TypeElement currentProperty, String pathReference) {
         String currentPropertyName = currentProperty.getQualifiedName().toString();
         String pathReferenceForThisProperty = pathReference + currentProperty.getSimpleName().toString();
@@ -1442,6 +1456,7 @@ abstract class AbstractRestHandler {
                 break;
             }
             TypeElement currentProperty = properties.get(pos);
+            validateThatCurrentPropertyIsAProperty(restElement, currentProperty, processingEnvironment);
             String currentPropertyName = currentProperty.getQualifiedName().toString();
             String pathReferenceForThisProperty = pathReference + currentProperty.getSimpleName().toString();
             addToPropertyToInfoMap(propertyToInfoMap, currentProperty, pathReference);
