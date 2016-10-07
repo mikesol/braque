@@ -66,8 +66,11 @@ Because Braque is based on code generation, running this in an IDE may be a head
 first depending on your IDE.  To start off, use the command line for compiling
 and your favorite text editor for editing.
 
-You can also checkout the [whitepaper](/whitepapers/why.md) for more information
-on the motivations for creating this library.
+You can also checkout the whitepapers for more information
+on the motivations for creating this library:
+
+* [Why Braque?](/whitepapers/why.md)
+* [Key Concepts in Braque](/whitepapers/concepts.md)
 
 ## A small example
 
