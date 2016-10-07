@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Jongla/braque.svg?branch=master)](https://travis-ci.org/Jongla/braque)
 # Braque
 
 Braque is a compile-time model creation framework for Java.
